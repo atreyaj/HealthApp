@@ -308,8 +308,6 @@ public class MainDocument extends AppCompatActivity
 
     public void view_details()
     {
-
-
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -319,7 +317,7 @@ public class MainDocument extends AppCompatActivity
                     HttpClient httpClient = new DefaultHttpClient();
 
                     //HttpPost httpPost = new HttpPost("http://darshanevents.in/gadgetexpo/chklist.php");
-//                    HttpPost httpPost = new HttpPost("http://acehealthcare.co.in/view_details.php");
+//                    HttpPost httpPost = new HttpPost("http://acehealthcare.co.in/viewdata.php");
                     HttpPost httpPost = new HttpPost("http://acehealthcare.co.in/view_details.php");
 
 
@@ -360,7 +358,8 @@ public class MainDocument extends AppCompatActivity
 
 
                         docno = json_data.getString("doc_id");
-                        docURL  = json_data.getString("doc_name");
+//                        docURL  = json_data.getString("doc_name");
+                        docURL  = json_data.getString("doc_folder_path");
                         Log.e("docno",""+docno);
                         Log.e("docname",""+docURL);
 
@@ -383,8 +382,6 @@ public class MainDocument extends AppCompatActivity
             }
 
         });
-
-
 
     }
 

@@ -74,7 +74,7 @@ public class CustomFileExplorerDialogActivity extends AppCompatActivity
     String filename;
     EditText usr_floder;
 
-    String usr_name;
+    String usr_name="Theo M J";
     InputStream is = null;
     String result;
     String line;
@@ -128,7 +128,6 @@ public class CustomFileExplorerDialogActivity extends AppCompatActivity
 
 
                 create_folder();
-
 
             }
         });
@@ -198,7 +197,7 @@ public class CustomFileExplorerDialogActivity extends AppCompatActivity
 
                             org_file = filename;
                             txt.setText(uploaded_file);
-
+Log.e("path",""+uploaded_file);
 
                         } catch (IOException e) {
                             e.printStackTrace();
@@ -254,13 +253,10 @@ public class CustomFileExplorerDialogActivity extends AppCompatActivity
     }
 
 
-
-
-
-
     public int uploadFile(String sourceFileUri) {
+       String UserNAme="Theo M J";
         create_folder();
-        upLoadServerUri = "http://acehealthcare.co.in/create_folder.php?usr_name=";
+        upLoadServerUri = "http://acehealthcare.co.in/create_folder.php?usr_name="+UserNAme;
         String fileName = sourceFileUri;
 
         HttpURLConnection conn = null;
@@ -513,11 +509,11 @@ public class CustomFileExplorerDialogActivity extends AppCompatActivity
                 try {
                     HttpClient httpClient = new DefaultHttpClient();
 
-                    HttpPost httpPost = new HttpPost("http://acehealthcare.co.in/create_folder.php");
+                    HttpPost httpPost = new HttpPost("http://acehealthcare.co.in/create_folder.php?usr_name=usr_name");
 
-                    httpPost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+//                    httpPost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
                     HttpResponse response = httpClient.execute(httpPost);
-                    Log.i("nameValuePairs", String.valueOf(nameValuePairs));
+//                    Log.i("nameValuePairs",""+ String.valueOf(nameValuePairs));
                     HttpEntity entity = response.getEntity();
                     is = entity.getContent();
                     Log.e("pass 1", "connection success");
@@ -541,8 +537,11 @@ public class CustomFileExplorerDialogActivity extends AppCompatActivity
 
                     Log.e("fail 2", e.toString());
                 }
+
+                Log.e("response",""+result);
                 try {
                     JSONObject json_data = new JSONObject(result);
+                    Log.e("response",""+result);
                     code = (json_data.getInt("code"));
 
                     if (code == 1) {
